@@ -19,12 +19,13 @@ def predict(Sex, Age, Pclass):
         Pclass = 3
 
     pred = mdl.predict_proba([[Sex,Age,Pclass]])[0]
-    return {"Did not survive:" + pred[0]+ "survived:" + pred[1]}
+    return {"Did not survive":  pred[0], "survived": pred[1]}
 
 demo = gr.Interface(
     fn=predict,
-    inputs=[gr.Dropdown(['male','female'], type="index"),gr.Number(value=0),gr.Dropdown(['A','B','C'], type="index")],
-    outputs="label"
+    inputs=[gr.Dropdown(['Male','Female'], type="index"),gr.Number(value=28),gr.Dropdown(['A','B','C'], type="value")],
+    outputs=gr.Label(),
+    live = True
 )
 
 demo.launch()
